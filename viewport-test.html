@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+    </style>
+</head>
+
+<body onload="UpdateElem()">
+    <div id="setting-area" style="background-color: #CCCCCC; visibility: hidden; margin-bottom: 20px;">
+        <table>
+            <tr>
+                <td>viewportの横幅：</td>
+                <td><input type="text" id="viewport-width" value="300" /></td>
+            </tr>
+            <tr>
+                <td>円の直径（px）：</td>
+                <td><input type="text" id="circle-size" value="500" /></td>
+            </tr>
+        </table>
+        <button onclick="UpdatePage()">実行!!</button>
+    </div>
+    <div id="circle-area" style="background-color: #333333;border-radius: 50%;">
+    </div>
+    <script>
+        function UpdateElem() {
+            var viewportSize = document.getElementById('viewport-width').value;
+            var circleSize = document.getElementById('circle-size').value;
+            var viewportValue = 'width=' + viewportSize;
+            document.querySelector("meta[name='viewport']").setAttribute('content', viewportValue);
+            var circleAreaElem = document.getElementById('circle-area');
+            circleAreaElem.style.width = circleSize + 'px';
+            circleAreaElem.style.height = circleSize + 'px';
+            var settingAreaElem =document.getElementById('setting-area');
+            settingAreaElem.style.visibility = '';
+            settingAreaElem.style.width = viewportSize + 'px';
+            var circleDispAreaElem = document.getElementById('circle-disp-area');
+            circleDispAreaElem.style.width = circleSize + 'px';
+            circleDispAreaElem.style.height = circleSize + 'px';
+        }
+        function UpdatePage() {
+            UpdateElem();
+        }
+    </script>
+</body>
+
+</html>
